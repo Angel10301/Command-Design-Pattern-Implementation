@@ -1,6 +1,9 @@
 //This program depicts the command design pattern, which is a behavioral design pattern. 
-//Its purpose is to encapsulate a request as an object, allowing you to parameterize objects with different requests, delay the execution of a request, or support undoable operations.
-//The program was written in C++, this program is a simulation of a door bell being rang, then followed by a knock on the door, till finally the door is opened, then ultimatly closed. It works in correltion to the figure in the slides encapsulating how the inovker goes to the Command to execute, then to ConcreteCommand which sends an action to the receiver.
+//Its purpose is to encapsulate a request as an object, allowing you to parameterize objects with different requests, 
+//delay the execution of a request, or support undoable operations.
+//The program was written in C++. This program is a simulation of a doorbell being rang, followed by a knock on the door, 
+//till finally the door is opened, then ultimatly closed. It works in correlation to the figure in the slides,
+//encapsulating how the invoker goes to the Command to execute, then to ConcreteCommand which sends an action to the receiver.
 #include <iostream>
 
 class Command { //command interface
@@ -24,7 +27,6 @@ class Door : public Interactible{ //Receiver
     Interactible* inter;
 public:
     void signalPresence() override {std::cout << "Door knocked." << std::endl;}
-    void knock(){std::cout << "Door knocked." << std::endl;}
     void open(){std::cout<< "Door opened." << std::endl;}
     void close(){std::cout << "Door closed." << std::endl;}
 };
@@ -57,11 +59,11 @@ public:
     void execute() override { doorbell->signalPresence();} //knock door
 };
 
-class DoorControl{ //invoker
+class Performer{ //invoker
     Command* command;
 public:
     void setCommand(Command* cmd) { command = cmd;} //sets the current command to be executed
-    void pressButton() { command->execute();} //executes when command is pressed
+    void act() { command->execute();} //executes when command is pressed
 };
 
 int main(){
@@ -72,19 +74,19 @@ int main(){
     KnockDoor knockCommand(&door); //command to knock, associated with Door object
     RingDoor ringCommand(&doorbell); //command to knock, associated with DoorBell object
 
-    DoorControl control; //invoker that executes the commands
+    Performer perform; //invoker that executes the commands
 
-    control.setCommand(&knockCommand);
-    control.pressButton();
+    perform.setCommand(&knockCommand);
+    perform.act();
     
-    control.setCommand(&ringCommand);
-    control.pressButton();
+    perform.setCommand(&ringCommand);
+    perform.act();
     
-    control.setCommand(&openCommand); //sets command to "OpenDoor"
-    control.pressButton(); //"open" command, outputs: "Door is open"
+    perform.setCommand(&openCommand); //sets command to "OpenDoor"
+    perform.act(); //"open" command, outputs: "Door is open"
 
-    control.setCommand(&closeCommand);
-    control.pressButton();
+    perform.setCommand(&closeCommand);
+    perform.act();
 
     return 0;
 }
