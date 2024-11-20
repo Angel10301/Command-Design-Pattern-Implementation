@@ -1,3 +1,6 @@
+//This program depicts the command design pattern, which is a behavioral design pattern. 
+//Its purpose is to encapsulate a request as an object, allowing you to parameterize objects with different requests, delay the execution of a request, or support undoable operations.
+//The program was written in C++, this program is a simulation of a door bell being rang, then followed by a knock on the door, till finally the door is opened, then ultimatly closed. It works in correltion to the figure in the slides encapsulating how the inovker goes to the Command to execute, then to ConcreteCommand which sends an action to the receiver.
 #include <iostream>
 
 class Command { //command interface
