@@ -16,7 +16,6 @@ public class MementoPatternExample {
 
         editor.write("Final version of the text."); // Write and save the third version
         System.out.println("Content: " + editor.getContent());    // Outputs: Final version of the text.
-        undoManager.save(editor.save());  // Save the state
 
         editor.restore(undoManager.undo()); // Undo the last action
         System.out.println("After undo: " + editor.getContent());  // Outputs: Hello, world! This is the Memento pattern.
