@@ -1,4 +1,4 @@
-# This code demonstrates the Interpreter Design Pattern by simulating a system that parses and executes instructions based on predefined actionsm and executes the corresponding behavior dynamically.
+# This code demonstrates the Interpreter Design Pattern by simulating a system that parses and executes instructions based on predefined actions and executes the corresponding behavior dynamically.
 
 class Expression: # Abstract expression class
     def interpret(self, context):
